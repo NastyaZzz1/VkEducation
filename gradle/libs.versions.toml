@@ -9,8 +9,11 @@ activityCompose = "1.12.4"
 kotlin = "2.0.21"
 composeBom = "2024.09.00"
 navigationVersion = "2.7.7"
+coilVersion = "3.3.0"
 
 [libraries]
+coil-compose-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilVersion" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilVersion" }
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
