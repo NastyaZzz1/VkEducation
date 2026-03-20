@@ -1,25 +1,24 @@
 package com.nastya.vkeducation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 
+@Preview
 @Composable
-fun App() {
+fun MainApp() {
     val navController = rememberNavController()
 
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.primary)
-            .statusBarsPadding()
+            .systemBarsPadding()
     ) {
         NavHost(
             navController = navController,
@@ -38,10 +37,7 @@ fun App() {
                 arguments = listOf(navArgument("itemId") { type = NavType.IntType })
             ) { backStackEntry ->
                 val itemId = backStackEntry.arguments?.getInt("itemId") ?: 0
-                DetailScreen(
-                    itemId = itemId,
-                    onBackClick = { navController.navigateUp() }
-                )
+                DetailScreen(onBackClick = { navController.navigateUp() })
             }
         }
     }

@@ -17,20 +17,23 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
 fun CardItem(
     onClick: () -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
     ) {
         Icon(
             modifier = Modifier
                 .size(50.dp)
-                .clickable { onClick() }
                 .clip(RoundedCornerShape(8.dp))
                 .align(Alignment.CenterVertically),
             tint = Color.Unspecified,
@@ -57,5 +60,13 @@ fun CardItem(
                 lineHeight = 12.sp
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    VkEducationTheme {
+        CardItem(onClick = {})
     }
 }
