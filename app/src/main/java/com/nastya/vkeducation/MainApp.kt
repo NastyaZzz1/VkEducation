@@ -18,7 +18,7 @@ fun MainApp() {
         startDestination = "main_list"
     ) {
         composable("main_list") {
-            MainListScreen(
+            AppListScreen(
                 onItemClick = { itemId ->
                     navController.navigate("detail_screen/$itemId")
                 }
@@ -29,7 +29,7 @@ fun MainApp() {
             "detail_screen/{itemId}",
             arguments = listOf(navArgument("itemId") { type = NavType.IntType })
         ) {
-            DetailScreen(onBackClick = { navController.navigateUp() })
+            AppDetailsScreen(onBackClick = { navController.navigateUp() })
         }
     }
 }

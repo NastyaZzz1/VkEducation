@@ -2,17 +2,12 @@ package com.nastya.vkeducation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -30,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
-fun MainListScreen(
+fun AppListScreen(
     onItemClick: (Int) -> Unit
 ) {
     Scaffold(
@@ -57,8 +52,8 @@ fun MainListScreen(
             }
         },
         containerColor = colorResource(R.color.blue_main),
-
-    ) { innerPadding ->
+    )
+    { innerPadding ->
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier
@@ -73,7 +68,7 @@ fun MainListScreen(
             )
         ) {
             items(15) { index ->
-                CardItem(onClick = { onItemClick(index) })
+                Card(onClick = { onItemClick(index) })
             }
         }
     }
@@ -83,6 +78,6 @@ fun MainListScreen(
 @Composable
 private fun Preview() {
     VkEducationTheme {
-        MainListScreen(onItemClick = {})
+        AppListScreen(onItemClick = {})
     }
 }

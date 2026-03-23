@@ -1,6 +1,5 @@
 package com.nastya.vkeducation
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import coil3.compose.AsyncImagePainter
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
@@ -47,20 +45,6 @@ fun ScreenshotsList(
                     .fillMaxWidth()
                     .aspectRatio(16f / 9f)
                     .clip(RoundedCornerShape(8.dp)),
-                onState = { state ->
-                    when (state) {
-                        is AsyncImagePainter.State.Loading -> {
-                            Log.d("ScreenshotsList", "Загрузка изображения $index")
-                        }
-                        is AsyncImagePainter.State.Success -> {
-                            Log.d("ScreenshotsList", "Успешно загружено $index")
-                        }
-                        is AsyncImagePainter.State.Error -> {
-                            Log.e("ScreenshotsList", "Ошибка загрузки $index: ${state.result.throwable}")
-                        }
-                        else -> {}
-                    }
-                }
             )
         }
     }
