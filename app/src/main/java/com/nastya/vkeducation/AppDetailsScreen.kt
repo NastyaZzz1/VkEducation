@@ -58,7 +58,7 @@ fun AppDetailsScreen(
 
 @Composable
 private fun AppDetailsContent(
-    appDetails: App,
+    appDetails: AppDetails,
     onBackClick: () -> Unit
 ) {
     val context = LocalContext.current

@@ -4,6 +4,6 @@ sealed interface AppDetailsState {
     data object Loading: AppDetailsState
     data object Error: AppDetailsState
     data class Content(
-        val appDetails: App
+        val appDetails: AppDetails
     ): AppDetailsState
 }

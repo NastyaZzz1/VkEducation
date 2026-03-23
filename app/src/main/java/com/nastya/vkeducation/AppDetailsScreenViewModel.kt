@@ -29,7 +29,7 @@ class AppDetailsScreenViewModel: ViewModel() {
         }
     }
 
-    private fun getApp(): App = App(
+    private fun getApp(): AppDetails = AppDetails(
         name = "Гильдия Героев: Экшен ММО РПГ",
         developer = "VK Play",
         category = Category.GAME,
