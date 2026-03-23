@@ -33,7 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun AppDetailsScreen(
     onBackClick: () -> Unit
 ) {
-    val viewModel: AppDetailsScreenViewModel = viewModel()
+    val viewModel: AppDetailsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     when(val currentState = state) {

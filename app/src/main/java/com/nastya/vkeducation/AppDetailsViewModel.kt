@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AppDetailsScreenViewModel: ViewModel() {
+class AppDetailsViewModel: ViewModel() {
     private val _state: MutableStateFlow<AppDetailsState> = MutableStateFlow(AppDetailsState.Loading)
     val state = _state.asStateFlow()
 
