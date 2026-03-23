@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose.network)
     implementation(libs.coil.compose)
     implementation(libs.androidx.navigation)

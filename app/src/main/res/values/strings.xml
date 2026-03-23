@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">VkEducation</string>
     <string name="logo">Логотип RuStore</string>
-    <string name="title">ВКонтакте: чаты, видео, музыка</string>
-    <string name="subtitle">Есть все</string>
-    <string name="category">Общение</string>
     <string name="under_developement">В процессе разработки</string>
 
     <string name="category_app">Приложения</string>
     <string name="category_game">Игры</string>
+    <string name="category_communication">Общение</string>
 
     <string name="app_details_age">Возраст</string>
     <string name="app_details_size">Размер</string>
