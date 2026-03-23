@@ -1,6 +1,7 @@
 package com.nastya.vkeducation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +16,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,8 +39,20 @@ import com.nastya.vkeducation.ui.theme.VkEducationTheme
 fun AppListScreen(
     onItemClick: (Int) -> Unit
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
+
     val viewModel: AppListViewModel = viewModel()
     val state = viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        viewModel.event.collect { event ->
+            when(event) {
+                is AppListEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(event.message)
+                }
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -48,9 +65,11 @@ fun AppListScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
+                    modifier = Modifier
+                        .clickable { viewModel.showRuStoreInfo() },
                     painter = painterResource(R.drawable.logo),
                     contentDescription = stringResource(R.string.logo),
-                    tint = Color.Unspecified
+                    tint = Color.Unspecified,
                 )
                 Icon(
                     modifier = Modifier.size(24.dp),
@@ -61,9 +80,9 @@ fun AppListScreen(
             }
         },
         containerColor = colorResource(R.color.blue_main),
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     )
     { innerPadding ->
-
         when(val currentState = state.value) {
             is AppListState.Content -> {
                 LazyColumn(

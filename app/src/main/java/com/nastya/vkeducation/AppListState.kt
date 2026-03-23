@@ -7,3 +7,7 @@ sealed interface AppListState {
         val appCards: List<CardApp>
     ): AppListState
 }
+
+sealed interface AppListEvent {
+    data class ShowSnackbar(val message: String) : AppListEvent
+}
