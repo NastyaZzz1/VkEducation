@@ -1,4 +1,4 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +18,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.nastya.vkeducation.domain.CardApp
+import com.nastya.vkeducation.domain.Category
+import com.nastya.vkeducation.domain.getCategoryText
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
@@ -66,6 +69,7 @@ fun Card(
 @Composable
 private fun Preview() {
     val card = CardApp(
+        id = "1",
         iconUrl = "https://static.rustore.ru/imgproxy/PTo8g-Giv9VHYo7_Rwxw_1wC07KtDM7eSJgAfMlv53s/preset:web_app_icon_160/plain/https://static.rustore.ru/3f3d7180-6eb9-45ad-8706-f467c6dcf82a@webp",
         title = "ВКонтакте: чаты, видео, музыка",
         subtitle = "Есть все",

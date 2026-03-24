@@ -1,4 +1,6 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.home
+
+import com.nastya.vkeducation.domain.CardApp
 
 sealed interface AppListState {
     data object Loading: AppListState
@@ -6,8 +8,4 @@ sealed interface AppListState {
     data class Content(
         val appCards: List<CardApp>
     ): AppListState
-}
-
-sealed interface AppListEvent {
-    data class ShowSnackbar(val message: String) : AppListEvent
 }
