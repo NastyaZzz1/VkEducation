@@ -29,7 +29,7 @@ import kotlin.math.roundToInt
 
 @Composable
 fun AppDetailsHeader(
-    app: App,
+    app: AppDetails,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -84,16 +84,10 @@ fun AppDetailsHeader(
     }
 }
 
-@Composable
-private fun getCategoryText(category: Category): String = when (category) {
-    Category.APP -> stringResource(R.string.category_app)
-    Category.GAME -> stringResource(R.string.category_game)
-}
-
 @Preview
 @Composable
 private fun Preview() {
-    val app = App(
+    val app = AppDetails(
         name = "Гильдия Героев: Экшен ММО РПГ",
         developer = "VK Play",
         category = Category.GAME,
