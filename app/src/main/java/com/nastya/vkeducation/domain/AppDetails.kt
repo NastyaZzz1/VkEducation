@@ -1,6 +1,7 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.domain
 
 data class AppDetails (
+    val id: String,
     val name: String,
     val developer: String,
     val category: Category,

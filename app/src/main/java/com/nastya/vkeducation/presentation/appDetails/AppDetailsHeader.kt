@@ -1,4 +1,4 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.appDetails
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -24,6 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.nastya.vkeducation.R
+import com.nastya.vkeducation.domain.AppDetails
+import com.nastya.vkeducation.domain.Category
+import com.nastya.vkeducation.domain.getCategoryText
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 import kotlin.math.roundToInt
 
@@ -88,6 +92,7 @@ fun AppDetailsHeader(
 @Composable
 private fun Preview() {
     val app = AppDetails(
+        id = "1234556",
         name = "Гильдия Героев: Экшен ММО РПГ",
         developer = "VK Play",
         category = Category.GAME,

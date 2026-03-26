@@ -1,4 +1,4 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.nastya.vkeducation.presentation.appDetails.AppDetailsScreen
+import com.nastya.vkeducation.presentation.home.AppListScreen
 
 @Preview
 @Composable

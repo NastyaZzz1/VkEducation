@@ -1,7 +1,8 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.domain
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import com.nastya.vkeducation.R
 
 enum class Category {
     APP, GAME, COMMUNICATION

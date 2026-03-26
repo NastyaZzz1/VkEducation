@@ -1,4 +1,4 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.nastya.vkeducation.R
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable

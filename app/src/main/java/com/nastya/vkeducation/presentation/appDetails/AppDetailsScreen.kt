@@ -1,4 +1,4 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.appDetails
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
@@ -28,6 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.nastya.vkeducation.R
+import com.nastya.vkeducation.domain.AppDetails
 
 @Composable
 fun AppDetailsScreen(

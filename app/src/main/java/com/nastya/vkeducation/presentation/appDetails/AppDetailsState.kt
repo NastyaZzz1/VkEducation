@@ -1,4 +1,6 @@
-package com.nastya.vkeducation
+package com.nastya.vkeducation.presentation.appDetails
+
+import com.nastya.vkeducation.domain.AppDetails
 
 sealed interface AppDetailsState {
     data object Loading: AppDetailsState
