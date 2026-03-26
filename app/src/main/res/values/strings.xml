@@ -3,9 +3,21 @@
     <string name="logo">Логотип RuStore</string>
     <string name="under_developement">В процессе разработки</string>
 
-    <string name="category_app">Приложения</string>
+    <string name="category_productivity">Производительность</string>
+    <string name="category_health_fitness">Здоровье и фитнес</string>
+    <string name="category_photo_video">Фото и видео</string>
+    <string name="category_food_drinks">Еда и напитки</string>
+    <string name="category_education">Образование</string>
+    <string name="category_lifestyle">Образ жизни</string>
+    <string name="category_shopping">Шопинг</string>
+    <string name="category_news">Новости</string>
+    <string name="category_music">Музыка</string>
     <string name="category_game">Игры</string>
-    <string name="category_communication">Общение</string>
+    <string name="category_utilities">Утилиты</string>
+    <string name="category_business">Бизнес</string>
+    <string name="category_books_guides">Книги и справочники</string>
+    <string name="category_navigation">Навигация</string>
+    <string name="category_social">Общение</string>
 
     <string name="app_details_age">Возраст</string>
     <string name="app_details_size">Размер</string>

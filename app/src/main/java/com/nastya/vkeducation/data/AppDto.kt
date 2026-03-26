@@ -1,5 +1,8 @@
 package com.nastya.vkeducation.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class AppDto (
     val id: String,
     val name: String,
@@ -10,6 +13,4 @@ data class AppDto (
     val iconUrl: String,
     val screenshotUrlList: List<String>,
     val description: String,
-    val title: String,
-    val subtitle: String,
 )

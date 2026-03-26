@@ -1,38 +1,36 @@
 package com.nastya.vkeducation.presentation.appDetails
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastya.vkeducation.domain.AppRepository
+import com.nastya.vkeducation.domain.GetAppDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
-    private val appRepository: AppRepository
+    private val getAppDetailsUseCase: GetAppDetailsUseCase,
 ) : ViewModel() {
     private val _state: MutableStateFlow<AppDetailsState> =
         MutableStateFlow(AppDetailsState.Loading)
     val state = _state.asStateFlow()
 
-    init {
-        loadApp()
-    }
-
-    fun loadApp() {
+    fun loadAppDetails(id: String) {
+        Log.d("ID", id)
         viewModelScope.launch {
-            val result = runCatching {
-                _state.value = AppDetailsState.Loading
-                delay(2000)
-
-                val appDetails = appRepository.getAppDetails("1")
-
-                _state.value = AppDetailsState.Content(appDetails)
-            }
-            if (result.isFailure) {
+            _state.value = AppDetailsState.Loading
+            try {
+                val appCardList = withContext(Dispatchers.IO) {
+                    getAppDetailsUseCase(id)
+                }
+                _state.value = AppDetailsState.Content(appCardList)
+            } catch(e: Exception) {
+                Log.d("Details", e.toString())
                 _state.value = AppDetailsState.Error
             }
         }

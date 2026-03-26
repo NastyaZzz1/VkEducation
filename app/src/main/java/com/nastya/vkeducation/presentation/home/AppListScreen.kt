@@ -29,20 +29,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nastya.vkeducation.R
-import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
 fun AppListScreen(
-    onItemClick: (Int) -> Unit
+    onItemClick: (String) -> Unit,
+    viewModel: AppListViewModel = hiltViewModel()
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val viewModel = hiltViewModel<AppListViewModel>()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
@@ -100,9 +98,10 @@ fun AppListScreen(
                     )
                 ) {
                     items(currentState.appCards.size) { index ->
+                        val app = currentState.appCards[index]
                         Card(
-                            card = currentState.appCards[index],
-                            onClick = { onItemClick(index) }
+                            card = app,
+                            onClick = { onItemClick(app.id) }
                         )
                     }
                 }
@@ -118,13 +117,5 @@ fun AppListScreen(
                 }
             }
         }
-    }
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    VkEducationTheme {
-        AppListScreen(onItemClick = {})
     }
 }
