@@ -2,29 +2,25 @@ package com.nastya.vkeducation.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastya.vkeducation.data.AppApi
-import com.nastya.vkeducation.data.AppMapper
-import com.nastya.vkeducation.data.AppRepositoryImpl
-import com.nastya.vkeducation.data.CategoryMapper
 import com.nastya.vkeducation.domain.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AppListViewModel: ViewModel() {
+@HiltViewModel
+class AppListViewModel @Inject constructor(
+    private val appRepository: AppRepository
+) : ViewModel() {
     private val _state: MutableStateFlow<AppListState> = MutableStateFlow(AppListState.Loading)
     val state = _state.asStateFlow()
 
     private val _event = Channel<AppListEvent>(Channel.BUFFERED)
     val event = _event.receiveAsFlow()
-
-    private val appRepository: AppRepository = AppRepositoryImpl(
-        mapper = AppMapper(categoryMapper = CategoryMapper()),
-        api = AppApi()
-    )
 
     init {
         loadCards()

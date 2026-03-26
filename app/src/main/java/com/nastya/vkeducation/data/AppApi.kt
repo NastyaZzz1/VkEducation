@@ -1,8 +1,9 @@
 package com.nastya.vkeducation.data
 
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class AppApi {
+class AppApi @Inject constructor() {
     suspend fun getAppDetails(id: String): AppDto {
         delay(2000)
         return AppDto(

@@ -3,10 +3,11 @@ package com.nastya.vkeducation.data
 import com.nastya.vkeducation.domain.AppRepository
 import com.nastya.vkeducation.domain.AppDetails
 import com.nastya.vkeducation.domain.CardApp
+import javax.inject.Inject
 
-class AppRepositoryImpl(
-    private val mapper: AppMapper,
-    private val api: AppApi
+class AppRepositoryImpl @Inject constructor(
+    private val api: AppApi,
+    private val mapper: AppMapper
 ): AppRepository {
     override suspend fun getAppDetails(id: String): AppDetails {
         val dto = api.getAppDetails(id)

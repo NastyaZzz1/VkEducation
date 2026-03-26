@@ -31,8 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nastya.vkeducation.R
 import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
@@ -42,7 +42,7 @@ fun AppListScreen(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val viewModel: AppListViewModel = viewModel()
+    val viewModel = hiltViewModel<AppListViewModel>()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
