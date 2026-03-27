@@ -2,25 +2,21 @@ package com.nastya.vkeducation.presentation.appDetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastya.vkeducation.data.AppApi
-import com.nastya.vkeducation.data.AppMapper
-import com.nastya.vkeducation.data.AppRepositoryImpl
-import com.nastya.vkeducation.data.CategoryMapper
 import com.nastya.vkeducation.domain.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AppDetailsViewModel: ViewModel() {
+@HiltViewModel
+class AppDetailsViewModel @Inject constructor(
+    private val appRepository: AppRepository
+) : ViewModel() {
     private val _state: MutableStateFlow<AppDetailsState> =
         MutableStateFlow(AppDetailsState.Loading)
     val state = _state.asStateFlow()
-
-    private val appRepository: AppRepository = AppRepositoryImpl(
-        mapper = AppMapper(categoryMapper = CategoryMapper()),
-        api = AppApi()
-    )
 
     init {
         loadApp()

@@ -2,8 +2,9 @@ package com.nastya.vkeducation.data
 
 import com.nastya.vkeducation.domain.AppDetails
 import com.nastya.vkeducation.domain.CardApp
+import javax.inject.Inject
 
-class AppMapper(
+class AppMapper @Inject constructor(
     private val categoryMapper: CategoryMapper
 ) {
     fun toDomainAppDetails(dto: AppDto): AppDetails = AppDetails(

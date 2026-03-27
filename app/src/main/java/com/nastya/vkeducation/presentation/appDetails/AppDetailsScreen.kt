@@ -27,15 +27,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nastya.vkeducation.R
 import com.nastya.vkeducation.domain.AppDetails
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 fun AppDetailsScreen(
     onBackClick: () -> Unit
 ) {
-    val viewModel: AppDetailsViewModel = viewModel()
+    val viewModel = hiltViewModel<AppDetailsViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     when(val currentState = state) {
