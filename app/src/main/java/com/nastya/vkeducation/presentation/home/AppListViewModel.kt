@@ -30,12 +30,12 @@ class AppListViewModel @Inject constructor(
     private fun loadCards() {
         viewModelScope.launch {
             _state.value = AppListState.Loading
-            try {
+            runCatching {
                 val appCardList = withContext(Dispatchers.IO) {
                     appRepository.getAppsList()
                 }
                 _state.value = AppListState.Content(appCardList)
-            } catch(e: Exception) {
+            }.onFailure {
                 _state.value = AppListState.Error
             }
         }
