@@ -1,5 +1,6 @@
 package com.nastya.vkeducation.presentation.appDetails
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,9 +35,16 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 fun AppDetailsScreen(
+    itemId: String,
     onBackClick: () -> Unit
 ) {
+    Log.d("Another ID", itemId)
     val viewModel = hiltViewModel<AppDetailsViewModel>()
+
+    LaunchedEffect(itemId) {
+        viewModel.loadAppDetails(itemId)
+    }
+
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     when(val currentState = state) {

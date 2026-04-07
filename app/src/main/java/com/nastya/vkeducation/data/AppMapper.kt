@@ -22,8 +22,8 @@ class AppMapper @Inject constructor(
     fun toDomainCardApp(dto: AppDto): CardApp = CardApp(
         id = dto.id,
         iconUrl = dto.iconUrl,
-        title = dto.title,
-        subtitle = dto.subtitle,
+        name = dto.name,
+        description = dto.description,
         category = categoryMapper.toDomain(dto.category),
     )
 }

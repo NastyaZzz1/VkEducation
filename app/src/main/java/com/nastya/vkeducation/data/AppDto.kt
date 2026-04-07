@@ -1,15 +1,16 @@
 package com.nastya.vkeducation.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class AppDto (
     val id: String,
     val name: String,
-    val developer: String,
     val category: String,
-    val ageRating: Int,
-    val size: Double,
     val iconUrl: String,
-    val screenshotUrlList: List<String>,
     val description: String,
-    val title: String,
-    val subtitle: String,
+    val developer: String = "",
+    val ageRating: Int = 5,
+    val size: Double = 5.0,
+    val screenshotUrlList: List<String> = emptyList(),
 )

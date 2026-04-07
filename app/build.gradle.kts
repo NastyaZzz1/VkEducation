@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.plugin.serialization)
+    alias(libs.plugins.kotlin.plugin.parcelize)
     alias(libs.plugins.google.dagger.hilt.android)
     alias(libs.plugins.kotlin.android)
 }
@@ -36,9 +38,16 @@ android {
     buildFeatures {
         compose = true
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
+    implementation(libs.logging.interceptor)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit.kotlin.serialization.converter)
+    implementation(libs.okhttp)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     implementation(libs.core.ktx)
