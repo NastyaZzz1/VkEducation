@@ -5,8 +5,8 @@ import retrofit2.http.Path
 
 interface AppApi {
     @GET("/catalog")
-    suspend fun getAppsList(): List<AppDto>
+    suspend fun getAppsList(): List<CardAppDto>
 
     @GET("/catalog/{id}")
-    suspend fun getAppDetails(@Path("id") id: String): AppDto
+    suspend fun getAppDetails(@Path("id") id: String): AppDetailsDto
 }
