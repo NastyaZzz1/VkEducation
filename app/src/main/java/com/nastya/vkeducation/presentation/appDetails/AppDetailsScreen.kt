@@ -1,6 +1,5 @@
 package com.nastya.vkeducation.presentation.appDetails
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,16 +34,9 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 fun AppDetailsScreen(
-    itemId: String,
     onBackClick: () -> Unit
 ) {
-    Log.d("Another ID", itemId)
     val viewModel = hiltViewModel<AppDetailsViewModel>()
-
-    LaunchedEffect(itemId) {
-        viewModel.loadAppDetails(itemId)
-    }
-
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     when(val currentState = state) {
@@ -109,7 +101,7 @@ private fun AppDetailsContent(
             )
             Spacer(Modifier.height(12.dp))
             ScreenshotsList(
-                screenshotUrlList = appDetails.screenshotUrlList,
+                screenshotUrlList = appDetails.screenshotUrlList ?: emptyList(),
                 contentPadding = PaddingValues(horizontal = 16.dp),
             )
             Spacer(Modifier.height(12.dp))

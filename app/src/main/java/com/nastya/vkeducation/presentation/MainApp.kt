@@ -31,9 +31,7 @@ fun MainApp() {
             "detail_screen/{itemId}",
             arguments = listOf(navArgument("itemId") { type = NavType.StringType })
         ) {backStackEntry ->
-            val itemId = backStackEntry.arguments?.getString("itemId") ?: ""
             AppDetailsScreen(
-                itemId = itemId,
                 onBackClick = { navController.navigateUp() }
             )
         }
