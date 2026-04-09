@@ -2,7 +2,7 @@ package com.nastya.vkeducation.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastya.vkeducation.domain.AppRepository
+import com.nastya.vkeducation.domain.GetAppsListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppListViewModel @Inject constructor(
-    private val appRepository: AppRepository
-) : ViewModel() {
+    private val getAppsListUseCase: GetAppsListUseCase,
+    ) : ViewModel() {
     private val _state: MutableStateFlow<AppListState> = MutableStateFlow(AppListState.Loading)
     val state = _state.asStateFlow()
 
@@ -33,7 +33,7 @@ class AppListViewModel @Inject constructor(
         _state.value = AppListState.Loading
         runCatching {
             val appCardList = withContext(Dispatchers.IO) {
-                appRepository.getAppsList()
+                getAppsListUseCase()
             }
             _state.value = AppListState.Content(appCardList)
         }.onFailure {

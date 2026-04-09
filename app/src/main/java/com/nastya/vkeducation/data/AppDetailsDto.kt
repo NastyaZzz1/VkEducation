@@ -13,4 +13,5 @@ data class AppDetailsDto (
     val ageRating: Int,
     val size: Double,
     val screenshotUrlList: List<String> = emptyList(),
+    val isInWishlist: Boolean = false,
 )

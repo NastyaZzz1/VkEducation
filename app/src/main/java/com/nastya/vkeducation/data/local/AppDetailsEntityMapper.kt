@@ -25,6 +25,7 @@ class AppDetailsEntityMapper {
         size = entity.size,
         iconUrl = entity.iconUrl,
         screenshotUrlList = null,
-        description = entity.description
+        description = entity.description,
+        isInWishlist = entity.isInWishlist
     )
 }

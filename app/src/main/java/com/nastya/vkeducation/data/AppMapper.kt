@@ -17,6 +17,7 @@ class AppMapper @Inject constructor(
         iconUrl = dto.iconUrl,
         screenshotUrlList = dto.screenshotUrlList,
         description = dto.description,
+        isInWishlist = dto.isInWishlist
     )
 
     fun toDomainCardApp(dto: CardAppDto): CardApp = CardApp(
