@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AppMapper @Inject constructor(
     private val categoryMapper: CategoryMapper
 ) {
-    fun toDomainAppDetails(dto: AppDto): AppDetails = AppDetails(
+    fun toDomainAppDetails(dto: AppDetailsDto): AppDetails = AppDetails(
         id = dto.id,
         name = dto.name,
         developer = dto.developer,
@@ -19,7 +19,7 @@ class AppMapper @Inject constructor(
         description = dto.description,
     )
 
-    fun toDomainCardApp(dto: AppDto): CardApp = CardApp(
+    fun toDomainCardApp(dto: CardAppDto): CardApp = CardApp(
         id = dto.id,
         iconUrl = dto.iconUrl,
         name = dto.name,
