@@ -5,10 +5,10 @@ import com.nastya.vkeducation.data.local.AppDetailsEntityMapper
 import com.nastya.vkeducation.domain.AppDetails
 import com.nastya.vkeducation.domain.AppRepository
 import com.nastya.vkeducation.domain.CardApp
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AppRepositoryImpl @Inject constructor(
@@ -26,9 +26,7 @@ class AppRepositoryImpl @Inject constructor(
                 val dto = api.getAppDetails(id)
                 val domain = mapper.toDomainAppDetails(dto)
                 val entity = entityMapper.toEntity(domain)
-                withContext(Dispatchers.IO) {
-                    dao.insertAppDetails(entity)
-                }
+                dao.insertAppDetails(entity)
                 domain
             }
         }
@@ -40,5 +38,18 @@ class AppRepositoryImpl @Inject constructor(
             mapper.toDomainCardApp(dto)
         }
         return domain
+    }
+
+    override fun observeAppDetails(id: String): Flow<AppDetails> {
+        return dao.getAppDetails(id)
+            .filterNotNull()
+            .map { entityMapper.toDomain(it) }
+    }
+
+    override suspend fun toggleWishlist(id: String) {
+        val currentEntity = dao.getAppDetails(id).first()
+        currentEntity?.let {
+            dao.updateWishlistStatus(id, !it.isInWishlist)
+        }
     }
 }

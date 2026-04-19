@@ -17,7 +17,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nastya.vkeducation.R
 import com.nastya.vkeducation.domain.AppDetails
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.nastya.vkeducation.domain.Category
+import com.nastya.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
 fun AppDetailsScreen(
@@ -43,7 +45,8 @@ fun AppDetailsScreen(
         is AppDetailsState.Content -> {
             AppDetailsContent(
                 appDetails = currentState.appDetails,
-                onBackClick = onBackClick
+                onBackClick = onBackClick,
+                onWishClick = viewModel::toggleWishlist
             )
         }
         AppDetailsState.Loading -> {
@@ -62,7 +65,8 @@ fun AppDetailsScreen(
 @Composable
 private fun AppDetailsContent(
     appDetails: AppDetails,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onWishClick: () -> Unit
 ) {
     val context = LocalContext.current
     val underDevelopmentText = stringResource(R.string.under_developement)
@@ -75,10 +79,12 @@ private fun AppDetailsContent(
             .fillMaxWidth()
     ) {
         Toolbar(
+            isInWishlist = appDetails.isInWishlist,
             onBackClick = onBackClick,
+            onWishClick = onWishClick,
             onShareClick = {
                 Toast.makeText(context, underDevelopmentText, Toast.LENGTH_SHORT).show()
-            },
+            }
         )
         Column(
             modifier = Modifier
@@ -131,5 +137,34 @@ private fun AppDetailsContent(
                     .padding(start = 16.dp),
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    val app = AppDetails(
+        id = "1234556",
+        name = "Гильдия Героев: Экшен ММО РПГ",
+        developer = "VK Play",
+        category = Category.GAME,
+        ageRating = 12,
+        size = 223.7f,
+        screenshotUrlList = listOf(
+            "https://static.rustore.ru/imgproxy/-y8kd-4B6MQ-1OKbAbnoAIMZAzvoMMG9dSiHMpFaTBc/preset:web_scr_lnd_335/plain/https://static.rustore.ru/apk/393868735/content/SCREENSHOT/dfd33017-e90d-4990-aa8c-6f159d546788.jpg@webp",
+            "https://static.rustore.ru/imgproxy/dZCvNtRKKFpzOmGlTxLszUPmwi661IhXynYZGsJQvLw/preset:web_scr_lnd_335/plain/https://static.rustore.ru/apk/393868735/content/SCREENSHOT/60ec4cbc-dcf6-4e69-aa6f-cc2da7de1af6.jpg@webp",
+            "https://static.rustore.ru/imgproxy/g5whSI1uNqaL2TUO7TFfM8M63vXpWXNCm2vlX4Ahvc4/preset:web_scr_lnd_335/plain/https://static.rustore.ru/apk/393868735/content/SCREENSHOT/c2dde8bc-c4ab-482a-80a5-2789149f598d.jpg@webp",
+            "https://static.rustore.ru/imgproxy/TjeurtC7BczOVJt74XhjGYuQnG1l4rx6zpDqyMb00GY/preset:web_scr_lnd_335/plain/https://static.rustore.ru/apk/393868735/content/SCREENSHOT/08318f76-7a9c-43aa-b4a7-1aa878d00861.jpg@webp",
+        ),
+        iconUrl = "https://static.rustore.ru/imgproxy/APsbtHxkVa4MZ0DXjnIkSwFQ_KVIcqHK9o3gHY6pvOQ/preset:web_app_icon_62/plain/https://static.rustore.ru/apk/393868735/content/ICON/3f605e3e-f5b3-434c-af4d-77bc5f38820e.png@webp",
+        description = "Легендарный рейд героев в Фэнтези РПГ. Станьте героем гильдии и зразите мастера подземелья!",
+        isInWishlist = true
+    )
+    VkEducationTheme {
+        AppDetailsContent(
+            app,
+            onBackClick = {},
+            onWishClick = {}
+        )
     }
 }

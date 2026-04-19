@@ -30,7 +30,7 @@ fun MainApp() {
         composable(
             "detail_screen/{appId}",
             arguments = listOf(navArgument("appId") { type = NavType.StringType })
-        ) {backStackEntry ->
+        ) {
             AppDetailsScreen(
                 onBackClick = { navController.navigateUp() }
             )
