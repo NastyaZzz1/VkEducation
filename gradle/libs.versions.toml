@@ -22,8 +22,18 @@ converter-kotlinx-serialization = "3.0.0"
 okhttp = "5.2.1"
 loggingInterceptor = "4.12.0"
 roomVersion = "2.6.1"
+coroutinesTestVersion = "1.7.3"
+mockitoInlineVersion = "4.11.0"
+mockitoVersion = "5.14.2"
+mockitoKotlinVersion = "5.4.0"
+truthVersion = "1.4.4"
 
 [libraries]
+truth = { group = "com.google.truth", name = "truth", version.ref = "truthVersion" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoVersion" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoInlineVersion" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlinVersion" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTestVersion" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 retrofit-kotlin-serialization-converter = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "converter-kotlinx-serialization" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
